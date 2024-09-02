@@ -1,0 +1,41 @@
+<thead>
+<tr>
+    <th>{{ 'SDG_SiteId'|translate }}</th>
+    <th>{{ 'SDG_UUID'|translate }}</th>
+    <th>{{ 'SDG_ReportType'|translate }}</th>
+    <th>{{ 'SDG_Period'|translate }}</th>
+    <th>{{ 'SDG_Status'|translate }}</th>
+    <th>{{ 'SDG_TransferDate'|translate }}</th>
+    <th>{{ 'SDG_Response'|translate }}</th>
+    <th>{{ 'SDG_Resend'|translate }}</th>
+</tr>
+</thead>
+<tbody id="services">
+{% for row in rows %}
+    {% if row.status == 200 %}
+        {% set statuscolor = 'background-color: lightgreen;' %}
+    {% else %}
+        {% set statuscolor = 'background-color: indianred;' %}
+    {% endif %}
+    <tr>
+        <td>{{ row.idSite }}</td>
+        <td>{{ row.uniqueid }}</td>
+        <td>{{ row.reportType }}</td>
+        <td>{{ row.fromdate }} / {{ row.todate }}</td>
+        <td>
+            {% if row.lastChange != '0000-00-00 00:00:00' %}
+                Sent
+            {% else %}
+                Scheduled
+            {% endif %}
+        </td>
+        <td>{% if row.lastChange != '0000-00-00 00:00:00' %}{{ row.lastChange }}{% endif %}</td>
+        <td style="{{ statuscolor }}">{{ row.status }}</td>
+        <td>
+            <a href="{{ row.resend_url }}">
+                <span class="icon-upload" data-toggle="tooltip" data-placement="top" title="Re-send Logs"></span>
+            </a>
+        </td>
+    </tr>
+{% endfor %}
+</tbody>

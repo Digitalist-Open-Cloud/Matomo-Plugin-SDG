@@ -1,0 +1,31 @@
+{
+  "SDG": {
+    "SDG": "SDG",
+    "SingleDigitalGateway": "Single Digital Gateway",
+    "ApiKey": "SDG API nyckel",
+    "ApiKeyInlineHelp": "Enter the API key, this will be saved as a secret, and it will show up here as ***",
+    "ReportURLs": "SDG rapporteringslänkar",
+    "AcceptanceApiKey": "Testmiljö SDG API nyckel",
+    "AcceptanceApiKeyInlineHelp": "Important: to use this, you also most set settings to use acceptance.",
+    "ReportURLsInlineHelp": "Enter a comma separated list of URLs to report to SDG, starting with the domain name. E.g., my.gov, my.gov/contact",
+    "LogsSent": "Statistics data sent correctly.",
+    "ErrorSendingLogs": "Error sending statistics data.",
+    "SDGHelp": "Report for the Statistics on Information services Data which will be sent to the Single Digital Gateway.",
+    "SingleDigitalGatewayStatistics": "Statistics on Information services",
+    "SDGSingleDigitalGatewayStatistics": "SDG: Statistics on Information services",
+    "FilterBy": "Filtrera efter:",
+    "SiteId": "Webbplats id",
+    "UUID": "UUID",
+    "ReportType": "Rapporttyp",
+    "From": "Från",
+    "To": "Till",
+    "Period": "Period",
+    "TimeSent": "Skickad",
+    "Status": "Status",
+    "TransferDate": "Datum överfört",
+    "Response": "Svar",
+    "Resend": "Skicka om",
+    "Reports": "Rapporter",
+    "ReportText": "Här kan du se statusen för rapporter som skickats till SDG. Om rapportens status är något annat än 200 (vilket betyder att allt gick bra) har den misslyckats av någon anledning, och du kan försöka att skicka om den genom att trycka på skicka om"
+  }
+}

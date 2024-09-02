@@ -1,0 +1,31 @@
+{
+  "SDG": {
+    "SDG": "SDG",
+    "SingleDigitalGateway": "Single Digital Gateway",
+    "ApiKey": "Chiave API SDG",
+    "ApiKeyInlineHelp": "Inserisci la chiave API, questa sarà salvata come segreta e apparirà qui come ***",
+    "ReportURLs": "URL del rapporto SDG",
+    "AcceptanceApiKey": "Chiave API di prova SDG",
+    "AcceptanceApiKeyInlineHelp": "Importante: per utilizzare questo, devi anche impostare le impostazioni su 'acceptance'.",
+    "ReportURLsInlineHelp": "Inserisci un elenco di URL separati da virgole per segnalare al SDG, iniziando con il nome di dominio. Ad esempio, my.gov, my.gov/contact",
+    "LogsSent": "Dati statistici inviati correttamente.",
+    "ErrorSendingLogs": "Errore nell'invio dei dati statistici.",
+    "SDGHelp": "Rapporto per le statistiche sui servizi informativi che saranno inviati al Single Digital Gateway.",
+    "SingleDigitalGatewayStatistics": "Statistiche sui servizi informativi",
+    "SDGSingleDigitalGatewayStatistics": "SDG: Statistiche sui servizi informativi",
+    "FilterBy": "Filtra per:",
+    "SiteId": "ID del sito",
+    "UUID": "UUID",
+    "ReportType": "Tipo di rapporto",
+    "From": "Da",
+    "To": "A",
+    "Period": "Periodo",
+    "TimeSent": "Ora di invio",
+    "Status": "Stato",
+    "TransferDate": "Data di trasferimento",
+    "Response": "Risposta",
+    "Resend": "Rinvia",
+    "Reports": "Rapporti",
+    "ReportText": "Qui puoi vedere lo stato dei rapporti inviati al SDG. Se lo stato del rapporto è diverso da 200 (il che significa che tutto è andato bene), è fallito per qualche motivo, e puoi provare a rinviarlo premendo il pulsante 'Rinvia'."
+  }
+}

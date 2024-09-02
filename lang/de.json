@@ -1,0 +1,31 @@
+{
+  "SDG": {
+    "SDG": "SDG",
+    "SingleDigitalGateway": "Single Digital Gateway",
+    "ApiKey": "SDG-API-Schlüssel",
+    "ApiKeyInlineHelp": "Geben Sie den API-Schlüssel ein, dieser wird als Geheimnis gespeichert und hier als *** angezeigt.",
+    "ReportURLs": "SDG-Bericht-URLs",
+    "AcceptanceApiKey": "Testen des SDG-API-Schlüssels",
+    "AcceptanceApiKeyInlineHelp": "Wichtig: Um dies zu verwenden, müssen Sie auch die Einstellungen auf Akzeptanz setzen.",
+    "ReportURLsInlineHelp": "Geben Sie eine kommaseparierte Liste von URLs zur Berichterstattung an SDG ein, beginnend mit dem Domainnamen. Z.B., my.gov, my.gov/contact",
+    "LogsSent": "Statistikdaten erfolgreich gesendet.",
+    "ErrorSendingLogs": "Fehler beim Senden der Statistikdaten.",
+    "SDGHelp": "Bericht für die Statistik über Informationsdienstleistungen, die an das Single Digital Gateway gesendet werden.",
+    "SingleDigitalGatewayStatistics": "Statistik über Informationsdienstleistungen",
+    "SDGSingleDigitalGatewayStatistics": "SDG: Statistik über Informationsdienstleistungen",
+    "FilterBy": "Filtern nach:",
+    "SiteId": "Seiten-ID",
+    "UUID": "UUID",
+    "ReportType": "Berichtstyp",
+    "From": "Von",
+    "To": "Bis",
+    "Period": "Zeitraum",
+    "TimeSent": "Gesendet um",
+    "Status": "Status",
+    "TransferDate": "Übertragungsdatum",
+    "Response": "Antwort",
+    "Resend": "Erneut senden",
+    "Reports": "Berichte",
+    "ReportText": "Hier können Sie den Status von Berichten sehen, die an das SDG gesendet wurden. Wenn der Status des Berichts anders als 200 ist (was bedeutet, dass alles gut gelaufen ist), ist er aus irgendeinem Grund fehlgeschlagen, und Sie können versuchen, ihn erneut zu senden, indem Sie auf die Schaltfläche 'Erneut senden' klicken."
+  }
+}

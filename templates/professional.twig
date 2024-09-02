@@ -1,0 +1,21 @@
+{% extends 'admin.twig' %}
+
+{% set title %}{{ 'SDG_SDG'|translate }}{% endset %}
+{% block content %}
+<div class="card ng-isolate-scope" piwik-content-block="" content-title="Single Digital Gateway">
+  <div class="card-content">
+    <div style="float:right">
+        <a style="text-decoration:none" href="https://digitalist.cloud/">
+          <img src="plugins/SDG/assets/dot.png" height="40" />
+        </a>
+    </div>
+    <h2 class="card-title">{{ 'SDG_SDG'|translate }}</h2>
+    <h3>
+    {{ 'SDG_Support'|translate }}
+    </h3>
+    <p>
+      {{ 'SDG_ProfessionalSupport'|translate|raw }}
+    </p>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{
+  "name": "SDG",
+  "description": "Single Digital Gateway (SDG) for Your Europe portal",
+  "version": "5.1.0",
+  "theme": false,
+  "require": {
+    "matomo": ">=5.0.0-rc1,<6.0.0-b1"
+  },
+  "authors": [
+    {
+      "name": "Digitalist Open Cloud",
+      "email": "cloud@digitalist.com",
+      "homepage": "https://digitalist.cloud"
+    }
+  ],
+  "support": {
+    "email": "cloud@digitalist.com",
+    "issues": "https://github.com/Digitalist-Open-Cloud/Matomo-Plugin-SDG/issues",
+    "source": "https://github.com/Digitalist-Open-Cloud/Matomo-Plugin-SDG"
+  },
+  "homepage": "https://digitalist.cloud",
+  "license": "GPL v3+",
+  "keywords": ["SDG", "Your Europe"]
+}

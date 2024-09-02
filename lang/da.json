@@ -1,0 +1,31 @@
+{
+  "SDG": {
+    "SDG": "SDG",
+    "SingleDigitalGateway": "Single Digital Gateway",
+    "ApiKey": "SDG API-nøgle",
+    "ApiKeyInlineHelp": "Indtast API-nøglen, denne vil blive gemt som en hemmelighed, og den vil vises her som ***",
+    "ReportURLs": "SDG Rapport-URLs",
+    "AcceptanceApiKey": "Testning af SDG API-nøgle",
+    "AcceptanceApiKeyInlineHelp": "Vigtigt: for at bruge dette skal du også indstille indstillingerne til at bruge acceptance.",
+    "ReportURLsInlineHelp": "Indtast en kommasepareret liste over URL'er til rapportering til SDG, startende med domænenavnet. F.eks., my.gov, my.gov/contact",
+    "LogsSent": "Statistikdata sendt korrekt.",
+    "ErrorSendingLogs": "Fejl ved afsendelse af statistikdata.",
+    "SDGHelp": "Rapport for Statistik over Informationstjenester Data, som vil blive sendt til Single Digital Gateway.",
+    "SingleDigitalGatewayStatistics": "Statistik over Informationstjenester",
+    "SDGSingleDigitalGatewayStatistics": "SDG: Statistik over Informationstjenester",
+    "FilterBy": "Filtrer efter:",
+    "SiteId": "Site-id",
+    "UUID": "UUID",
+    "ReportType": "Rapporttype",
+    "From": "Fra",
+    "To": "Til",
+    "Period": "Periode",
+    "TimeSent": "Tidspunkt sendt",
+    "Status": "Status",
+    "TransferDate": "Overførselsdato",
+    "Response": "Svar",
+    "Resend": "Send igen",
+    "Reports": "Rapporter",
+    "ReportText": "Her kan du se status for rapporter sendt til SDG. Hvis status for rapporten er andet end 200 (hvilket betyder, at alt gik godt), er den mislykkedes af en eller anden grund, og du kan prøve at sende den igen ved at trykke på knappen 'Send igen'."
+  }
+}

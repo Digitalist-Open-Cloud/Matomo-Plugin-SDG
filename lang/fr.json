@@ -1,0 +1,31 @@
+{
+  "SDG": {
+    "SDG": "SDG",
+    "SingleDigitalGateway": "Passerelle Numérique Unique",
+    "ApiKey": "Clé API SDG",
+    "ApiKeyInlineHelp": "Entrez la clé API, celle-ci sera enregistrée en tant que secret et apparaîtra ici sous forme de ***",
+    "ReportURLs": "URLs de rapport SDG",
+    "AcceptanceApiKey": "Test de la clé API SDG",
+    "AcceptanceApiKeyInlineHelp": "Important : pour utiliser ceci, vous devez également régler les paramètres sur 'acceptance'.",
+    "ReportURLsInlineHelp": "Entrez une liste d'URLs séparées par des virgules pour signaler au SDG, en commençant par le nom de domaine. Par exemple, my.gov, my.gov/contact",
+    "LogsSent": "Données statistiques envoyées correctement.",
+    "ErrorSendingLogs": "Erreur lors de l'envoi des données statistiques.",
+    "SDGHelp": "Rapport pour les statistiques sur les services d'information qui seront envoyées à la Passerelle Numérique Unique.",
+    "SingleDigitalGatewayStatistics": "Statistiques sur les services d'information",
+    "SDGSingleDigitalGatewayStatistics": "SDG : Statistiques sur les services d'information",
+    "FilterBy": "Filtrer par :",
+    "SiteId": "ID du site",
+    "UUID": "UUID",
+    "ReportType": "Type de rapport",
+    "From": "De",
+    "To": "À",
+    "Period": "Période",
+    "TimeSent": "Heure d'envoi",
+    "Status": "Statut",
+    "TransferDate": "Date de transfert",
+    "Response": "Réponse",
+    "Resend": "Renvoyer",
+    "Reports": "Rapports",
+    "ReportText": "Ici, vous pouvez voir le statut des rapports envoyés au SDG. Si le statut du rapport est différent de 200 (ce qui signifie que tout s'est bien passé), il a échoué pour une raison quelconque, et vous pouvez essayer de le renvoyer en appuyant sur le bouton 'Renvoyer'."
+  }
+}

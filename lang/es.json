@@ -1,0 +1,31 @@
+{
+  "SDG": {
+    "SDG": "SDG",
+    "SingleDigitalGateway": "Pasarela Digital Única",
+    "ApiKey": "Clave API SDG",
+    "ApiKeyInlineHelp": "Introduce la clave API, se guardará como un secreto y aparecerá aquí como ***",
+    "ReportURLs": "URLs de informes SDG",
+    "AcceptanceApiKey": "Clave API de prueba SDG",
+    "AcceptanceApiKeyInlineHelp": "Importante: para usar esto, también debes configurar los ajustes para usar 'acceptance'.",
+    "ReportURLsInlineHelp": "Introduce una lista separada por comas de URLs para informar al SDG, comenzando con el nombre de dominio. Por ejemplo, my.gov, my.gov/contact",
+    "LogsSent": "Datos estadísticos enviados correctamente.",
+    "ErrorSendingLogs": "Error al enviar los datos estadísticos.",
+    "SDGHelp": "Informe para las estadísticas sobre servicios de información que se enviarán a la Pasarela Digital Única.",
+    "SingleDigitalGatewayStatistics": "Estadísticas sobre servicios de información",
+    "SDGSingleDigitalGatewayStatistics": "SDG: Estadísticas sobre servicios de información",
+    "FilterBy": "Filtrar por:",
+    "SiteId": "ID del sitio",
+    "UUID": "UUID",
+    "ReportType": "Tipo de informe",
+    "From": "Desde",
+    "To": "Hasta",
+    "Period": "Periodo",
+    "TimeSent": "Hora de envío",
+    "Status": "Estado",
+    "TransferDate": "Fecha de transferencia",
+    "Response": "Respuesta",
+    "Resend": "Reenviar",
+    "Reports": "Informes",
+    "ReportText": "Aquí puedes ver el estado de los informes enviados al SDG. Si el estado del informe es diferente de 200 (lo que significa que todo fue bien), ha fallado por alguna razón, y puedes intentar reenviarlo presionando el botón 'Reenviar'."
+  }
+}

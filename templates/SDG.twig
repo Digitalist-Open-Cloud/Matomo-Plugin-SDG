@@ -1,0 +1,79 @@
+{% extends 'admin.twig' %}
+
+{% set title %}{{ 'SDG_SDG'|translate }}{% endset %}
+{% block content %}
+    <div class="card ng-isolate-scope" piwik-content-block="" content-title="Single Digital Gateway">
+      <div class="card-content">
+        <div style="float:right">
+            <a style="text-decoration:none" href="https://www.digitalist.se/">
+              <img src="plugins/SDG/assets/dot.png" height="40" />
+            </a>
+        </div>
+        <h2 class="card-title">{{ 'SDG_SDG'|translate }}</h2>
+        <p>
+        {{ 'SDG_ReportText'|translate }}
+        </p>
+        <div id="filters">
+            <h3>{{ 'SDG_FilterBy'|translate }}</h3>
+            {% if siteIds is defined %}
+                <div class="filterby">
+                    <label for="filterBySiteId">{{ 'SDG_SiteId'|translate }}</label>
+                    <select name="filterBySiteId" id="filterBySiteId" onchange="filterSdgBy()">
+                        <option value="" selected></option>
+                        {% for key, siteId in siteIds %}
+                            <option value="{{ key }}">{{ siteId }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            {% endif %}
+            {% if names is defined %}
+                <div class="filterby">
+                    <label for="filterByName">{{ 'SDG_ReportType'|translate }}</label>
+                    <select name="filterByName" id="filterByName" onchange="filterSdgBy()">
+                        <option value="" selected></option>
+                        {% for key, name in names %}
+                            <option value="{{ key }}">{{ name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            {% endif %}
+            {% if fromDates is defined %}
+                <div class="filterby">
+                    <label for="filterByFrom">{{ 'SDG_From'|translate }}</label>
+                    <select name="filterByFrom" id="filterByFrom" onchange="filterSdgBy()">
+                        <option value="" selected></option>
+                        {% for key, date in fromDates %}
+                            <option value="{{ key }}">{{ date }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            {% endif %}
+            {% if toDates is defined %}
+                <div class="filterby">
+                    <label for="filterByTo">{{ 'SDG_To'|translate }}:</label>
+                    <select name="filterByTo" id="filterByTo" onchange="filterSdgBy()">
+                        <option value="" selected></option>
+                        {% for key, date in toDates %}
+                            <option value="{{ key }}">{{ date }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            {% endif %}
+            {% if statuses is defined %}
+                <div class="filterby">
+                    <label for="filterByTo">{{ 'SDG_Response'|translate }}:</label>
+                    <select name="filterByStatus" id="filterByStatus" onchange="filterSdgBy()">
+                        <option value="" selected></option>
+                        {% for key, name in statuses %}
+                            <option value="{{ key }}">{{ name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            {% endif %}
+        </div>
+        <table piwik-content-table id="sdg">
+            {% include('@SDG/_sdgTable.twig') %}
+        </table>
+    </div>
+</div>
+{% endblock %}
