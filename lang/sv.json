@@ -26,6 +26,6 @@
     "Response": "Svar",
     "Resend": "Skicka om",
     "Reports": "Rapporter",
-    "ReportText": "Här kan du se statusen för rapporter som skickats till SDG. Om rapportens status är något annat än 200 (vilket betyder att allt gick bra) har den misslyckats av någon anledning, och du kan försöka att skicka om den genom att trycka på skicka om"
+    "ReportText": "Här kan du se statusen för rapporter som skickats till SDG. Om rapportens status är något annat än 200 (vilket betyder att allt gick bra) har den misslyckats av någon anledning, och du kan försöka att skicka om den genom att trycka på skicka om."
   }
 }

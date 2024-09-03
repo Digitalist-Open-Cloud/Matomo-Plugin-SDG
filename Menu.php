@@ -31,8 +31,8 @@ class Menu extends \Piwik\Plugin\Menu
         if (Piwik::isUserHasSomeAdminAccess()) {
             $menu->registerMenuIcon('SDG_SingleDigitalGateway', 'icon-code');
             $menu->addItem('SDG_SingleDigitalGateway', null, $this->urlForDefaultAction(), $order = 96);
-            $menu->addItem('SDG_SingleDigitalGateway', 'SDG_Reports', $this->urlForDefaultAction(), $order = 97);
-            $menu->addItem('SDG_SingleDigitalGateway', 'SDG_Docs', $this->urlForAction('docs'), $order = 98);
+            $menu->addItem('SDG_SingleDigitalGateway', 'SDG_SendStatus', $this->urlForDefaultAction(), $order = 97);
+            $menu->addItem('SDG_SingleDigitalGateway', 'SDG_DocsHeading', $this->urlForAction('docs'), $order = 98);
             $menu->addItem('SDG_SingleDigitalGateway', 'SDG_Support', $this->urlForAction('professional'), $order = 99);
         }
     }

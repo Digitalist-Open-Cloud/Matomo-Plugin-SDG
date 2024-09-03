@@ -9,33 +9,105 @@
           <img src="plugins/SDG/assets/dot.png" height="40" />
         </a>
     </div>
-    <h2 class="card-title">{{ 'SDG_SDG'|translate }}</h2>
+    <h1 class="card-title">{{ 'SDG_SDG'|translate }}</h1>
+    <h2>
+      {{ 'SDG_DocsHeading'|translate }}
+    </h2>
+    <p>
+      {{ 'SDG_DocsDescription'|translate }}
+    </p>
+    <h2>
+      {{ 'SDG_DocsInstallationHeading'|translate }}
+    </h2>
+    <p>
+      {{ 'SDG_DocsInstallationDescription'|translate|raw }}
+    </p>
+    <h2>
+      {{ 'SDG_DocsSettingsHeading'|translate }}
+    </h2>
+    <p>
+      <img src="plugins/SDG/screenshots/general_settings.png" alt="Configure SDG in General settings" title="General settings" style="max-width: 100%; margin: 20px 0px">
+    </p>
     <h3>
-    {{ 'SDG_Support'|translate }}
+      {{ 'SDG_DocsSettingsEnvironmentHeading'|translate }}
     </h3>
     <p>
-
-
-<p>SDG - Matomo plugin to use for sending data to Single Digital Gateway.</p>
-<h2 class="heading-element">Installation</h2><a id="user-content-installation" class="anchor" aria-label="Permalink: Installation" href="#installation"></a>
-<p><a href="https://matomo.org/faq/plugins/faq_21/" rel="nofollow">Download and install the plugin as you normally do</a>.</p>
-<h2 class="heading-element">Settings</h2><a id="user-content-settings" class="anchor" aria-label="Permalink: Settings" href="#settings"></a>
-<p><a target="_blank" rel="noopener noreferrer" href="plugins/SDG/screenshots/general_settings.png"><img src="plugins/SDG/screenshots/general_settings.png" alt="Configure SDG in General settings" title="General settings" style="max-width: 100%;"></a></p>
-<h3 class="heading-element">Set SDG environment</h3><a id="user-content-set-sdg-environment" class="anchor" aria-label="Permalink: Set SDG environment" href="#set-sdg-environment"></a>
-<p>Here you can set Testing (acceptance) or Production environment. Testing is if you would like to test the setup, or if you are running a test instance.</p>
-<h3 class="heading-element">Date to send SDG from the previous month</h3><a id="user-content-date-to-send-sdg-from-the-previous-month" class="anchor" aria-label="Permalink: Date to send SDG from the previous month" href="#date-to-send-sdg-from-the-previous-month"></a>
-<p>We recommend using the second of the month (default), as the plugin uses archived data, and the plugin try to send your data as soon as possible on the date you set, you should send at least the second, as all your data may be not be archived yet.</p>
-<h3 class="heading-element">Add API settings to a measurable (website etc.)</h3><a id="user-content-add-api-settings-to-a-measurable-website-etc" class="anchor" aria-label="Permalink: Add API settings to a measurable (website etc.)" href="#add-api-settings-to-a-measurable-website-etc"></a>
-<p>Every website uses separate settings for SDG, as you could have different API keys for sites, so we need to add them. Go to the website you want to add URL:s and API-keys for. Website -&gt; Manage.</p>
-<p><a target="_blank" rel="noopener noreferrer" href="plugins/SDG/screenshots/manage.png"><img src="plugins/SDG/screenshots/manage.png" alt="Configure measurable" title="Manage measurable" style="max-width: 100%;"></a></p>
-<p>Add the needed information in the fields:</p>
-<p><a target="_blank" rel="noopener noreferrer" href="plugins/SDG/screenshots/manage_settings.png"><img src="plugins/SDG/screenshots/manage_settings.png" alt="Manage SDG settings for measurable" title="Manage SDG" style="max-width: 100%;"></a></p>
-<p>You must at least provide an API-token and one report URL.
-Now you are all set to start sending data to the Single Digital Gateway.</p>
-<h2 class="heading-element">Report data</h2><a id="user-content-report-data" class="anchor" aria-label="Permalink: Report data" href="#report-data"></a>
-<p>Information about what is going to be sent, or have been sent, to the gateway you can see in the SDG report (you can use the monthly view in the Matomo UI to see the report per month).</p>
-<p><a target="_blank" rel="noopener noreferrer" href="plugins/SDG/screenshots/statistics.png"><img src="plugins/SDG/screenshots/statistics.png" alt="Report of SDG" title="Report" style="max-width: 100%;"></a></p>
-
+      {{ 'SDG_DocsSettingsEnvironmentDescription'|translate }}
+    </p>
+    <h3>
+      {{ 'SDG_DocsSettingsSendHeading'|translate }}
+    </h3>
+    <p>
+      {{ 'SDG_DocsSettingsSendDescription'|translate }}
+    </p>
+    <h3>
+      {{ 'SDG_DocsSettingsApiHeading'|translate }}
+    </h3>
+    <p>
+      {{ 'SDG_DocsSettingsApiDescriptionFirst'|translate }}
+    </p>
+    <p>
+      <img src="plugins/SDG/screenshots/manage.png" alt="Configure measurable" title="Manage measurable" style="max-width: 100%; margin: 20px 0px">
+    </p>
+    <p>
+      {{ 'SDG_DocsSettingsApiDescriptionSecond'|translate }}
+    </p>
+    <p>
+      <img src="plugins/SDG/screenshots/manage_settings.png" alt="Manage SDG settings for measurable" title="Manage SDG" style="max-width: 100%; margin: 20px 0px">
+    </p>
+    <p>
+      {{ 'SDG_DocsSettingsApiDescriptionThird'|translate }}
+    </p>
+    <h2>
+      {{ 'SDG_DocsReportHeading'|translate }}
+    </h2>
+    <p>
+      {{ 'SDG_DocsReportDescription'|translate }}
+    </p>
+    <p>
+      <img src="plugins/SDG/screenshots/statistics.png" alt="Report of SDG" title="Report" style="max-width: 100%; margin: 20px 0px">
+    </p>
+    <h2>
+      {{ 'SDG_SendStatus'|translate }}
+    </h2>
+    <p>
+      {{ 'SDG_DocsSendStatusDescription'|translate }}
+    </p>
+    <h2>
+      {{ 'SDG_DocsConsoleCommandsHeading'|translate }}
+    </h2>
+    <p>
+      {{ 'SDG_DocsConsoleCommandsDescription'|translate }}
+    </p>
+    <h3>
+      {{ 'SDG_DocsConsoleCommandsEnvironmentHeading'|translate }}
+    </h3>
+    <p>
+      {{ 'SDG_DocsConsoleCommandsEnvironmentDescription'|translate }}
+    </p>
+    <h3>
+      {{ 'SDG_DocsConsoleCommandsGetUrlsHeading'|translate }}
+    </h3>
+    <p>
+      {{ 'SDG_DocsConsoleCommandsGetUrlsDescription'|translate }}
+    </p>
+    <h3>
+      {{ 'SDG_DocsConsoleCommandsSendHeading'|translate }}
+    </h3>
+    <p>
+      {{ 'SDG_DocsConsoleCommandsSendDescription'|translate }}
+    </p>
+    <h3>
+      {{ 'SDG_DocsConsoleCommandsSetApiKeyHeading'|translate }}
+    </h3>
+    <p>
+      {{ 'SDG_DocsConsoleCommandsSetApiKeyDescription'|translate }}
+    </p>
+    <h3>
+      {{ 'SDG_DocsConsoleCommandsSetUrlsHeading'|translate }}
+    </h3>
+    <p>
+      {{ 'SDG_DocsConsoleCommandsSetUrlsDescription'|translate }}
     </p>
   </div>
 </div>

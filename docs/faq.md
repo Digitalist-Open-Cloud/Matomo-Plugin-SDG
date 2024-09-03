@@ -32,7 +32,7 @@ You should get a successful output when this is done.
 
 ### List sent reports?
 
-In the Administration section, go to System -> Single Digital Gateway.
+In the Administration section, go to Single Digital Gateway -> Send status.
 
 Successfully sent reports should have a response “200”, if not, you can try to resend them by pushing the resend icon. Though, we recommend to use the console to send the reports, for better debugging output if something is wrong. A new uuid for identifying the reports will  be created.
 
