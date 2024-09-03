@@ -28,7 +28,7 @@
     "Reports": "Reports",
     "ReportText": "Here you can see the status of reports sent to the SDG. If the status of the report is other than 200 (which means that all went well, it has failed for some reason, and you could try to resend by pushing the resend button.",
     "Support": "Support",
-    "ProfessionalSupport": "For Professional support of implementing the Single Digital Gateway plugin in Matomo, please contact Digitalist Open Cloud, <a href='mailto:cloud@digitalist.com'>cloud@digitalist.com</a>.",
+    "ProfessionalSupport": "For Professional support of implementing the Single Digital Gateway plugin in Matomo, please contact Digitalist Open Cloud, <a href='mailto:cloud@digitalist.com'>cloud@digitalist.com</a> or <a href='https://digitalist.cloud/services/eu/sdg-plugin-for-matomo'>visit our website for more information</a>.",
     "SendStatus": "Send status",
     "DocsHeading": "Documentation",
     "DocsDescription": "Matomo plugin to use for sending data to Single Digital Gateway.",

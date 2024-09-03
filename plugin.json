@@ -15,10 +15,11 @@
   ],
   "support": {
     "email": "cloud@digitalist.com",
+    "website": "https://digitalist.cloud/services/eu/sdg-plugin-for-matomo",
     "issues": "https://github.com/Digitalist-Open-Cloud/Matomo-Plugin-SDG/issues",
     "source": "https://github.com/Digitalist-Open-Cloud/Matomo-Plugin-SDG"
   },
-  "homepage": "https://digitalist.cloud",
+  "homepage": "https://digitalist.cloud/services/eu/sdg-plugin-for-matomo",
   "license": "GPL v3+",
   "keywords": ["SDG", "Your Europe"]
 }

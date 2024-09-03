@@ -25,7 +25,7 @@ API.
 
 ## Support
 
-For Professional support and consultation, contact Digitalist Open Cloud <cloud@digitalist.com>.
+For Professional support and consultation, contact Digitalist Open Cloud <cloud@digitalist.com> or [visit or website](https://digitalist.cloud/services/eu/sdg-plugin-for-matomo).
 
 ## License
 
