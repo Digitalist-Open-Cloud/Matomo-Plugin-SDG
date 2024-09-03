@@ -29,7 +29,7 @@ class Menu extends \Piwik\Plugin\Menu
     public function configureAdminMenu(MenuAdmin $menu)
     {
         if (Piwik::isUserHasSomeAdminAccess()) {
-            $menu->registerMenuIcon('SDG_SingleDigitalGateway', 'icon-code');
+            $menu->registerMenuIcon('SDG_SingleDigitalGateway', 'icon-business');
             $menu->addItem('SDG_SingleDigitalGateway', null, $this->urlForDefaultAction(), $order = 96);
             $menu->addItem('SDG_SingleDigitalGateway', 'SDG_SendStatus', $this->urlForDefaultAction(), $order = 97);
             $menu->addItem('SDG_SingleDigitalGateway', 'SDG_DocsHeading', $this->urlForAction('docs'), $order = 98);

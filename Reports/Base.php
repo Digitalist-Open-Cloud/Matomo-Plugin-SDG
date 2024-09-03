@@ -28,6 +28,6 @@ abstract class Base extends Report
 {
     protected function init()
     {
-        $this->categoryId = Piwik::translate('SDG_SDG');
+        $this->categoryId = Piwik::translate('SDG_SingleDigitalGateway');
     }
 }

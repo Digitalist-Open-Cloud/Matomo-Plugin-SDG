@@ -48,7 +48,6 @@ class GetSingleDigitalGateway extends Base
     {
         $view->config->show_search = true;
         $view->requestConfig->filter_sort_column = 'nb_visits';
-  //      $view->config->columns_to_display = array_merge(['url'], $this->metrics);
         $view->config->show_tag_cloud = false;
         $view->config->show_pie_chart = false;
         $view->config->show_table_all_columns = true;
