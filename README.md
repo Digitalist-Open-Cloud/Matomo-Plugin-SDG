@@ -10,6 +10,11 @@ to do so.
 
 ## Installation
 
+### Download and activate plugin
+
+Just follow your normal procedure for downloading plugins, and then activate the
+plugin. And follow the instructions bellow.
+
 ### Per website
 
 Go to Admin --> Websites --> Manage. edit the site that you are getting to send
