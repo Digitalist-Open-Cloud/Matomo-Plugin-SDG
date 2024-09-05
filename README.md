@@ -2,6 +2,12 @@
 
 Plugin for Single Digital Gateway for Your Europe.
 
+## Use for plugin
+
+You only need this plugin for Matomo if your website analytics needs
+to be report to the single digital gateway, and you need the API keys
+to do so.
+
 ## Installation
 
 ### Per website
@@ -25,7 +31,7 @@ API.
 
 ## Support
 
-For Professional support and consultation, contact Digitalist Open Cloud <cloud@digitalist.com> or [visit or website](https://digitalist.cloud/services/eu/sdg-plugin-for-matomo).
+For professional support and consultation, contact Digitalist Open Cloud <cloud@digitalist.com> or [visit or website](https://digitalist.cloud/services/eu/sdg-plugin-for-matomo).
 
 ## License
 
