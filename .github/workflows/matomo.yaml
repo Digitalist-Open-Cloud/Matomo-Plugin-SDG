@@ -22,7 +22,7 @@ jobs:
         env:
           # Every job that has the key sends a transfer to the acceptance portal, so only one gets it.
           SDG_ACCEPTANCE_API_KEY: ${{ matrix.php == '8.4' && matrix.target == 'maximum_supported_matomo' && secrets.SDG_ACCEPTANCE_API_KEY || '' }}
-          SDG_ACCEPTANCE_URL: ${{ vars.SDG_ACCEPTANCE_URL }}
+          SDG_ACCEPTANCE_URL: ${{ vars.SDG_ACCEPTANCE_URL || secrets.SDG_ACCEPTANCE_URL }}
         uses: Digitalist-Open-Cloud/Matomo-github-action-tests@main
         with:
           plugin-name: 'SDG'
