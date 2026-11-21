@@ -130,7 +130,7 @@ class AccessTest extends SdgTestCase
     public function testTheStatusPageIsFiltered(array $filter, array $expected)
     {
         (new Sql())->insertRequestInfo('uuid-of-february', 'information-services', 1, '2024-02-01', '2024-02-29', 200, 4, '2024-03-02');
-        $_GET = $filter + ['siteId' => '', 'name' => '', 'from' => '', 'to' => '', 'status' => ''];
+        $_GET = $filter;
 
         $table = $this->controller->filter();
 
@@ -143,6 +143,7 @@ class AccessTest extends SdgTestCase
     {
         return [
             'nothing' => [[], ['uuid-of-site-1', 'uuid-of-site-2', 'uuid-of-february']],
+            'website' => [['siteId' => '2'], ['uuid-of-site-2']],
             'status' => [['status' => '200'], ['uuid-of-february']],
             'from' => [['from' => '2024-03-01'], ['uuid-of-site-1', 'uuid-of-site-2']],
             'to' => [['to' => '2024-02-29'], ['uuid-of-february']],

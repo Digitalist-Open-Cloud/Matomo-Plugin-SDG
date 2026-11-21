@@ -8,6 +8,12 @@ You only need this plugin for Matomo if your website analytics needs
 to be report to the single digital gateway, and you need the API keys
 to do so.
 
+## Requirements
+
+- An API key for the Single Digital Gateway.
+- Matomo's scheduled tasks have to run, as they do with the `core:archive` cron job. They send the statistics.
+- The Matomo server has to reach `https://collect.youreurope.europa.eu`, and `https://collect.sdgacceptance.eu` for testing. A proxy set in Matomo's `config.ini.php` is used.
+
 ## Installation
 
 ### Download and activate plugin

@@ -25,6 +25,7 @@ namespace Piwik\Plugins\SDG\Service;
 
 use Exception;
 use Piwik\Container\StaticContainer;
+use Piwik\Date;
 use Piwik\Log\LoggerInterface;
 use Piwik\Plugins\SDG\Lib\GetAPIConfig;
 use Piwik\Plugins\SDG\Lib\GetStatisticsOnInformationServices;
@@ -61,7 +62,7 @@ class SOIS
         } else {
             $uuid = $this->uuid;
         }
-        $date_sent = date_create("now")->format('Y:m:d');
+        $date_sent = Date::now()->getDatetime();
         $all = new GetStatisticsOnInformationServices($apiconfig['idsite']);
         // fetch all the data.
         $result = $all->getSources($this->from, $this->to);
