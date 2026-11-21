@@ -34,7 +34,9 @@ class SetSdgApiKey extends ConsoleCommand
         $HelpText = 'The <info>%command.name%</info> sets SDG API key.
 <comment>Samples:</comment>
 To run:
-<info>%command.name% --key=FOOBAR</info>';
+<info>%command.name% --idsite=1 --key=FOOBAR</info>
+or, to keep the key out of the history of the shell:
+<info>SDG_API_KEY=FOOBAR %command.name% --idsite=1</info>';
         $this->setHelp($HelpText);
         $this->setName('sdg:set-api-key');
         $this->setDescription('Set SDG API key');
@@ -46,7 +48,7 @@ To run:
         $this->addRequiredValueOption(
             'key',
             null,
-            'Your API key'
+            'Your API key. Without it, the key is read from the environment variable SDG_API_KEY'
         );
     }
 
@@ -55,7 +57,8 @@ To run:
         $input = $this->getInput();
         $output = $this->getOutput();
         $idsite = $input->getOption('idsite');
-        $key = $input->getOption('key');
+        // A key in the environment does not end up in the history of the shell.
+        $key = $input->getOption('key') ?? (getenv('SDG_API_KEY') ?: null);
         if (!(isset($idsite))) {
             $output->writeln('<error>you need to provide a site id</error>');
             return self::FAILURE;

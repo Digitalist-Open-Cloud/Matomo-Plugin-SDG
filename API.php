@@ -25,6 +25,7 @@ use Piwik\Archive;
 use Piwik\DataTable;
 use Piwik\DataTable\Map;
 use Piwik\Metrics;
+use Piwik\Piwik;
 use Piwik\Plugin\API as PiwikAPI;
 
 /**
@@ -43,6 +44,8 @@ class API extends PiwikAPI
      */
     public function getSingleDigitalGateway($idSite, $period, $date, $segment = false)
     {
+        Piwik::checkUserHasViewAccess($idSite);
+
         $archive = Archive::build($idSite, $period, $date, $segment);
         $statisticsArchiveData = $archive->getDataTable(Archiver::SDG_STATITICS);
         $statisticsDataTables = [];

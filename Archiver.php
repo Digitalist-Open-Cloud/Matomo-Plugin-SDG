@@ -26,7 +26,7 @@ use Piwik\DataTable\Row;
 use Piwik\DbHelper;
 use Piwik\Metrics;
 use Piwik\Plugin\Archiver as CoreArchiver;
-use Piwik\Plugins\SDG\Lib\GetAllUrls;
+use Piwik\Plugins\SDG\Lib\GetUrls;
 use Piwik\Tracker\Action;
 
 class Archiver extends CoreArchiver
@@ -58,6 +58,17 @@ class Archiver extends CoreArchiver
 
     private function aggregateStatistics()
     {
+        // Only visits to the report URLs of the website are archived.
+        $idSite = $this->getProcessor()->getParams()->getSite()->getId();
+        $matches = [];
+        foreach (array_filter((new GetUrls(['idsite' => $idSite]))->get()) as $url) {
+            // Written as hex, so that nothing of the setting is part of the query text.
+            $matches[] = "urls.name LIKE _utf8mb4 X'" . bin2hex('%' . addcslashes($url, '\\%_') . '%') . "'";
+        }
+        if (empty($matches)) {
+            return new DataTable();
+        }
+
         $logAggregator = $this->getLogAggregator();
         $from = [(self::LOG_ACTIONS)];
         $from[] = [
@@ -75,12 +86,9 @@ class Archiver extends CoreArchiver
             "tableAlias" => "visits",
             "joinOn" => self::LOG_ACTIONS . ".idvisit=visits.idvisit",
         ];
-        // Get all SDG report Urls, so we just archive the visists with the url present.
-        $all = new GetAllUrls();
-        $urls = $all->list();
         $where = "titles.type=" . Action::TYPE_PAGE_TITLE .
           " AND urls.type=" . Action::TYPE_PAGE_URL .
-          " AND urls.url_prefix!=0" . " AND urls.name REGEXP '$urls'";
+          " AND urls.url_prefix!=0" . " AND (" . implode(" OR ", $matches) . ")";
         $where = $logAggregator->getWhereStatement(self::LOG_ACTIONS, self::SERVER_TIME, $where);
         $select = "urls.name as pageUrl
             , titles.name as pageTitle

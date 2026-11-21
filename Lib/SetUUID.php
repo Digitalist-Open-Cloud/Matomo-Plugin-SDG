@@ -24,9 +24,12 @@ declare(strict_types=1);
 namespace Piwik\Plugins\SDG\Lib;
 
 use Exception;
+use Piwik\Http;
 
 class SetUUID
 {
+    private const TIMEOUT = 30;
+
     protected $config;
 
     public function __construct($config)
@@ -34,23 +37,36 @@ class SetUUID
         $this->config = $config;
     }
 
+    /**
+     * @return string the unique ID the portal gives out for a transfer
+     * @throws Exception when the portal did not answer with one
+     */
     public function get()
     {
-        $url = $this->config['url'] . '/v1/unique-id';
-        $curl = curl_init((string)$url);
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
-        $key = $this->config['key'];
-        $headers = ["x-api-key: $key"];
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-        $resp = curl_exec($curl);
-        if (curl_errno($curl) > 0) {
-            throw new Exception(curl_error($curl));
-        }
-        curl_close($curl);
-        $resp = json_decode($resp);
+        $response = Http::sendHttpRequestBy(
+            Http::getTransportMethod(),
+            $this->config['url'] . '/v1/unique-id',
+            self::TIMEOUT,
+            null,
+            null,
+            null,
+            0,
+            false,
+            false,
+            false,
+            true,
+            'GET',
+            null,
+            null,
+            null,
+            ['x-api-key: ' . $this->config['key']]
+        );
 
-        return $resp;
+        $uuid = json_decode((string) ($response['data'] ?? ''));
+        if ((int) ($response['status'] ?? 0) !== 200 || !is_string($uuid) || $uuid === '') {
+            throw new Exception('The SDG portal did not give out a unique ID, status ' . (int) ($response['status'] ?? 0) . '.');
+        }
+
+        return $uuid;
     }
 }
