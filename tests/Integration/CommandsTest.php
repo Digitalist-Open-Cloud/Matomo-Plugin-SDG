@@ -161,7 +161,7 @@ class CommandsTest extends ConsoleCommandTestCase
     /**
      * @dataProvider getDatesThatAreNotDates
      */
-    public function testSendingFailsForADateThatIsNotADate(string $from, string $to)
+    public function testSendingFailsForDatesThePortalDoesNotTake(string $from, string $to)
     {
         $this->answer(200, '"the-id"');
 
@@ -176,6 +176,7 @@ class CommandsTest extends ConsoleCommandTestCase
         return [
             'from' => ['March', '2024-03-31'],
             'to' => ['2024-03-01', '31/3'],
+            'not from the first day of a month' => ['2024-03-05', '2024-03-31'],
         ];
     }
 

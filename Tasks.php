@@ -22,6 +22,7 @@
 namespace Piwik\Plugins\SDG;
 
 use Exception;
+use Piwik\Date;
 use Piwik\Plugins\SDG\Lib\GetAllUrls;
 use Piwik\Plugins\SDG\Model\Reports;
 use Piwik\Plugins\SDG\Service\SOIS;
@@ -45,33 +46,39 @@ class Tasks extends \Piwik\Plugin\Tasks
         $this->hourly("sendInformationServicesData", null, self::LOWEST_PRIORITY);
     }
 
+    /**
+     * Sends the previous month for every website with report URLs, from the send date on until
+     * the portal has accepted it. A website is tried once a day.
+     */
     public function sendInformationServicesData()
     {
         try {
-            $today = date("d");
-            $startDate = date('Y-m-d', strtotime("first day of -1 month"));
-            $endDate = date('Y-m-d', strtotime("last day of -1 month"));
+            $today = Date::now();
             $settings = new SystemSettings();
-            $day = $settings->senddate->getValue();
-            if ($today == $day) {
-                $this->logger->debug('Running schedule for SDG');
-                $ids = new GetAllUrls();
-                $getids = $ids->allSitesId();
-                foreach ($getids as $id) {
-                    $latest = new Reports();
-                    $succesful = $latest->getMostRecentSuccess($id);
-                    $lastEndDate = date('Y-m-d', strtotime($succesful['endDate']));
-                    // If lastEndDate is not the same as enddate - try send report.
-                    if ($lastEndDate !== $endDate) {
-                        $config['idsite'] = $id;
-                        $sois = new SOIS($config, $startDate, $endDate, true);
-                        $result = $sois->send();
-                        if ($result['status'] == '200') {
-                            $this->logger->info('Statistics data sent for SDG');
-                        } else {
-                            $this->logger->error('Statistics data not sent for SDG');
-                        }
-                    }
+            // A send date after the last day of the month is that last day.
+            $sendDay = min((int) $settings->senddate->getValue(), (int) $today->toString('t'));
+            if ((int) $today->toString('j') < $sendDay) {
+                return;
+            }
+
+            $endDate = Date::factory($today->toString('Y-m-01'))->subDay(1)->toString('Y-m-d');
+            $startDate = substr($endDate, 0, 8) . '01';
+
+            $this->logger->debug('Running schedule for SDG');
+            $reports = new Reports();
+            foreach ((new GetAllUrls())->allSitesId() as $id) {
+                $succesful = $reports->getMostRecentSuccess($id);
+                $lastEndDate = empty($succesful['endDate']) ? '' : date('Y-m-d', strtotime($succesful['endDate']));
+                if ($lastEndDate === $endDate || $reports->wasTriedOn((int) $id, $endDate, $today->toString('Y-m-d'))) {
+                    continue;
+                }
+
+                $sois = new SOIS(['idsite' => $id], $startDate, $endDate, true);
+                $result = $sois->send();
+                if ($result['status'] === 200) {
+                    $this->logger->info('Statistics data sent for SDG');
+                } else {
+                    $this->logger->error('Statistics data not sent for SDG');
                 }
             }
         } catch (Exception $e) {

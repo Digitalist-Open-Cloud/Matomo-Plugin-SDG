@@ -103,4 +103,18 @@ class Reports
 
         return Db::fetchRow($query, [$idSite]);
     }
+
+    /**
+     * @return bool whether a transfer for the period that ends on this date was sent on this day
+     */
+    public function wasTriedOn(int $idSite, string $endDate, string $day): bool
+    {
+        $query = "SELECT 1 FROM " . Common::prefixTable(Sql::TABLE_NAME) . "
+            WHERE reportType = 'information-services'
+            AND idSite = ?
+            AND DATE(todate) = ?
+            AND DATE(lastChange) = ?";
+
+        return (bool) Db::fetchOne($query, [$idSite, $endDate, $day]);
+    }
 }

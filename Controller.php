@@ -200,19 +200,12 @@ class Controller extends \Piwik\Plugin\Controller
     {
         Piwik::checkUserHasSomeAdminAccess();
 
-        $siteId = \Piwik\Request::fromRequest()->getStringParameter('siteId');
-        $siteId = strip_tags($siteId);
-        if (isset($siteId)) {
-            $siteId = 0;
-        }
-        $name = \Piwik\Request::fromRequest()->getStringParameter('name');
-        $name = strip_tags($name);
-        $from = \Piwik\Request::fromRequest()->getStringParameter('from');
-        $from = strip_tags($from);
-        $to = \Piwik\Request::fromRequest()->getStringParameter('to');
-        $to = strip_tags($to);
-        $status = \Piwik\Request::fromRequest()->getStringParameter('status');
-        $status = strip_tags($status);
+        $request = \Piwik\Request::fromRequest();
+        $siteId = (int) $request->getStringParameter('siteId', '');
+        $name = strip_tags($request->getStringParameter('name', ''));
+        $from = strip_tags($request->getStringParameter('from', ''));
+        $to = strip_tags($request->getStringParameter('to', ''));
+        $status = strip_tags($request->getStringParameter('status', ''));
 
         [$reports, $siteIds, $names, $fromDates, $toDates, $statuses] = $this->reports();
 

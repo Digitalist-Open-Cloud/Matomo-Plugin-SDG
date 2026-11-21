@@ -16,6 +16,10 @@
 
 ### Fixed
 
+- The status page can be filtered by website.
+- A month is sent from the send date on until the portal has accepted it, once a day. Before, it was only tried on the send date itself, so a month was lost when that day was missed or the send date was a day the month does not have.
+- `sdg:send-statistics-on-information-services` refuses a period that does not start on the first day of a month, as the portal does.
+- The status page shows the time of a transfer and not only its day.
 - A website was left out of the scheduled sending when its report URLs started with a comma, which `sdg:set-urls` wrote for the first URLs of a website.
 
 ### Changed

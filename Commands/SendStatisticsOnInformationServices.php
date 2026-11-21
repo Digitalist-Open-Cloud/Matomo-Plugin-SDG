@@ -49,7 +49,7 @@ class SendStatisticsOnInformationServices extends ConsoleCommand
         $this->addRequiredValueOption(
             'from',
             null,
-            'From date, (format 2023-01-01)'
+            'From date, the first day of a month (format 2023-01-01)'
         );
         $this->addRequiredValueOption(
             'to',
@@ -70,6 +70,10 @@ class SendStatisticsOnInformationServices extends ConsoleCommand
         $from = (string)$input->getOption('from');
         if (DateTime::createFromFormat('Y-m-d', $from) == false) {
             $output->writeln("<error>$from doesn't like a valid date string, like 2023-01-01");
+            return 1;
+        }
+        if (substr($from, 8) !== '01') {
+            $output->writeln("<error>$from is not the first day of a month, which the SDG portal requires.</error>");
             return 1;
         }
         $to = (string)$input->getOption('to');
