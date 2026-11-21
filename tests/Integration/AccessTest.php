@@ -94,7 +94,7 @@ class AccessTest extends SdgTestCase
     public function testWhatIsSentAgainIsTheTransferThatWasRecordedAndNotWhatTheRequestSays()
     {
         FakeAccess::clearAccess(false, [1]);
-        $_GET = ['uniqueid' => 'uuid-of-site-1', 'nonce' => Nonce::getNonce('SDG.resend'), 'idSite' => '2', 'from' => '2020-01-01', 'to' => '2020-12-31'];
+        $_GET = ['uniqueid' => 'uuid-of-site-1', 'nonce' => Nonce::getNonce('SDG.resend'), 'from' => '2020-01-01', 'to' => '2020-12-31'];
 
         $this->controller->resend();
 
