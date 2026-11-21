@@ -108,6 +108,6 @@ To run:
 
     private function removeDuplicates($urls)
     {
-        return implode(',', array_unique(explode(',', $urls)));
+        return implode(',', array_unique(array_filter(array_map('trim', explode(',', $urls)))));
     }
 }

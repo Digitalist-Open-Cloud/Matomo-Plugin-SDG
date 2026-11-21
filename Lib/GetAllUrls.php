@@ -61,7 +61,7 @@ class GetAllUrls
         foreach ($list as $id) {
             $settings = new MeasurableSettings((int) $id);
             $urlValue = $settings->reportUrls->getValue();
-            if (strlen($urlValue >= 1)) {
+            if (trim((string) $urlValue, ", \n\r\t") !== '') {
                 $sites[] = $id;
             }
         }

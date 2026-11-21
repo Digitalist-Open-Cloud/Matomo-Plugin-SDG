@@ -23,6 +23,7 @@ namespace Piwik\Plugins\SDG;
 
 use Piwik\Menu\MenuAdmin;
 use Piwik\Menu\MenuTop;
+use Piwik\Nonce;
 use Piwik\Notification;
 use Piwik\Piwik;
 use Piwik\Plugins\SDG\Model\Reports;
@@ -36,6 +37,8 @@ use Piwik\Url;
  */
 class Controller extends \Piwik\Plugin\Controller
 {
+    private const RESEND_NONCE = 'SDG.resend';
+
     /**
      *
      * @var Reports
@@ -84,14 +87,19 @@ class Controller extends \Piwik\Plugin\Controller
         $toDates = [];
         $statuses = [];
 
+        $nonce = Nonce::getNonce(self::RESEND_NONCE);
+
         foreach ($this->db->getSentReports() as $report) {
+            if (!Piwik::isUserHasAdminAccess($report['idSite'])) {
+                continue;
+            }
+
             $resend_url = Url::getCurrentQueryStringWithParametersModified(
                 [
                     'module' => 'SDG',
                     'action' => 'resend',
                     'uniqueid' => $report['uniqueid'],
-                    'from' => date_format(date_create($report['fromdate']), "Y-m-d"),
-                    'to' => date_format(date_create($report['todate']), "Y-m-d"),
+                    'nonce' => $nonce,
                 ]
             );
 
@@ -131,31 +139,30 @@ class Controller extends \Piwik\Plugin\Controller
     public function resend(): string
     {
         Piwik::checkUserHasSomeAdminAccess();
+        Nonce::checkNonce(self::RESEND_NONCE, \Piwik\Request::fromRequest()->getStringParameter('nonce', ''));
+
+        // What is sent again is read from the transfer that was recorded, not from the request.
+        $report = $this->db->getSentReport(\Piwik\Request::fromRequest()->getStringParameter('uniqueid', ''));
+        if ($report === null) {
+            throw new \Exception(Piwik::translate('SDG_ErrorSendingLogs'));
+        }
+        Piwik::checkUserHasAdminAccess($report['idSite']);
 
         try {
-            $uuid = \Piwik\Request::fromRequest()->getStringParameter('uniqueid');
-            $uuid = strip_tags($uuid);
-            $id = \Piwik\Request::fromRequest()->getStringParameter('idSite');
-            $id = strip_tags($id);
-            $from = \Piwik\Request::fromRequest()->getStringParameter('from');
-            $from = strip_tags($from);
-            $to = \Piwik\Request::fromRequest()->getStringParameter('to');
-            $to = strip_tags($to);
-            $config = [];
-            $config['idsite'] = $id;
-            $sois = new SOIS($config, $from, $to, true, $uuid);
-            $result = $sois->send();
-
-            $notification = new Notification(
-                Piwik::translate('SDG_LogsSent')
+            $sois = new SOIS(
+                ['idsite' => (int) $report['idSite']],
+                date('Y-m-d', strtotime($report['fromdate'])),
+                date('Y-m-d', strtotime($report['todate'])),
+                true,
+                $report['uniqueid']
             );
-            $notification->context = Notification::CONTEXT_SUCCESS;
+            $isSent = $sois->send()['status'] === 200;
         } catch (\Exception $e) {
-            $notification = new Notification(
-                Piwik::translate('SDG_ErrorSendingLogs')
-            );
-            $notification->context = Notification::CONTEXT_ERROR;
+            $isSent = false;
         }
+
+        $notification = new Notification(Piwik::translate($isSent ? 'SDG_LogsSent' : 'SDG_ErrorSendingLogs'));
+        $notification->context = $isSent ? Notification::CONTEXT_SUCCESS : Notification::CONTEXT_ERROR;
 
         return $this->renderPage([$notification]);
     }
@@ -233,25 +240,29 @@ class Controller extends \Piwik\Plugin\Controller
             ]
         );
     }
+
     public function professional()
     {
+        Piwik::checkUserHasSomeAdminAccess();
+
         return $this->renderTemplate(
             '@SDG/professional.twig',
             [
                 'topMenu' => MenuTop::getInstance()->getMenu(),
                 'adminMenu' => MenuAdmin::getInstance()->getMenu(),
-                'notifications' => $notifications,
             ]
         );
     }
+
     public function docs()
     {
+        Piwik::checkUserHasSomeAdminAccess();
+
         return $this->renderTemplate(
             '@SDG/docs.twig',
             [
                 'topMenu' => MenuTop::getInstance()->getMenu(),
                 'adminMenu' => MenuAdmin::getInstance()->getMenu(),
-                'notifications' => $notifications,
             ]
         );
     }

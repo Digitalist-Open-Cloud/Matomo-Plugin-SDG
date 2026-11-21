@@ -21,10 +21,12 @@
 
 namespace Piwik\Plugins\SDG\Lib;
 
-use Exception;
+use Piwik\Http;
 
 class SendStats
 {
+    private const TIMEOUT = 30;
+
     protected $config;
     protected $payload;
     protected $endpoint;
@@ -36,26 +38,34 @@ class SendStats
         $this->endpoint = $endpoint;
     }
 
+    /**
+     * @return array{response: string, status: int}
+     * @throws \Exception when the server cannot be reached
+     */
     public function ship()
     {
-        $url = $this->config['url'] . $this->endpoint;
-        $curl = curl_init($url);
-        curl_setopt($curl, CURLOPT_URL, $url);
-        //curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $this->payload);
-        $key = $this->config['key'];
-        $headers = ["x-api-key: $key"];
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-        $resp = curl_exec($curl);
-        $status = curl_getinfo($curl, CURLINFO_RESPONSE_CODE);
-        if (curl_errno($curl) > 0) {
-            throw new Exception(curl_error($curl));
-        }
-        curl_close($curl);
+        $response = Http::sendHttpRequestBy(
+            Http::getTransportMethod(),
+            $this->config['url'] . $this->endpoint,
+            self::TIMEOUT,
+            null,
+            null,
+            null,
+            0,
+            false,
+            false,
+            false,
+            true,
+            'POST',
+            null,
+            null,
+            $this->payload,
+            ['x-api-key: ' . $this->config['key']]
+        );
+
         return [
-            'response' => $resp,
-            'status' => $status,
+            'response' => (string) ($response['data'] ?? ''),
+            'status' => (int) ($response['status'] ?? 0),
         ];
     }
 }

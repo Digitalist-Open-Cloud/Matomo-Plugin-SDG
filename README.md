@@ -23,6 +23,14 @@ you should also add the key for `Testing SDG API key`. If testing, see further
 down for using Acceptance environment.
 
 In `SDG Report URLs`, add all Urls that should be reported to SDG, comma separated.
+A page is reported when its address contains one of them. Write them without `https://` and `www.`, for example `example.org/services`.
+
+From the command line:
+
+```sh
+SDG_API_KEY=<key> ./console sdg:set-api-key --idsite=<idSite>
+./console sdg:set-urls --idsite=<idSite> --urls=example.org/services,example.org/permits
+```
 
 ### Production or Acceptance
 
@@ -33,6 +41,17 @@ Go to Admin --> General settings --> SDG and choose "Acceptance" and save.
 
 All API requests will now go against Acceptance API instead of the live, production
 API.
+
+## Tests
+
+```sh
+./console tests:run SDG
+```
+
+The SDG portal is replaced by answers of the tests. One test sends a transfer to the acceptance environment of the portal instead. It is skipped unless these are set:
+
+- `SDG_ACCEPTANCE_API_KEY`: a key for the acceptance environment
+- `SDG_ACCEPTANCE_URL`: the address to report, without `https://`
 
 ## Support
 

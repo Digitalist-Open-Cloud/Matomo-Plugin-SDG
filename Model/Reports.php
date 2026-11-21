@@ -35,13 +35,23 @@ class Reports
      */
     public function getSentReports(?string $uniqueId = null)
     {
-        $sql = sprintf("SELECT * FROM %s", Common::prefixTable(Sql::TABLE_NAME));
+        $sql = "SELECT * FROM " . Common::prefixTable(Sql::TABLE_NAME);
 
         if (!empty($uniqueId)) {
-            $sql = sprintf("%s WHERE uniqueid = '%s'", $sql, addslashes($uniqueId));
+            return Db::fetchAll($sql . " WHERE uniqueid = ?", [$uniqueId]);
         }
 
         return Db::fetchAll($sql);
+    }
+
+    /**
+     * @return array|null the transfer with this ID, or null when there is none
+     */
+    public function getSentReport(string $uniqueId): ?array
+    {
+        $report = Db::fetchRow("SELECT * FROM " . Common::prefixTable(Sql::TABLE_NAME) . " WHERE uniqueid = ?", [$uniqueId]);
+
+        return empty($report) ? null : $report;
     }
 
     /**
@@ -52,13 +62,9 @@ class Reports
      */
     public function getSentReportLogs(string $uniqueId)
     {
-        $sql = "SELECT * FROM %s WHERE uniqueid = '%s' ORDER BY id DESC";
         return Db::fetchAll(
-            sprintf(
-                $sql,
-                Common::prefixTable(Sql::TABLE_NAME),
-                addslashes($uniqueId)
-            )
+            "SELECT * FROM " . Common::prefixTable(Sql::TABLE_NAME) . " WHERE uniqueid = ? ORDER BY id DESC",
+            [$uniqueId]
         );
     }
 
@@ -75,10 +81,10 @@ class Reports
             FROM $table
             WHERE reportType = 'information-services'
             AND status <> 200
-            AND idSite = $idSite
+            AND idSite = ?
             AND toDate = (SELECT MIN(toDate) FROM $table WHERE status <> 200)";
 
-        return Db::fetchRow($query);
+        return Db::fetchRow($query, [$idSite]);
     }
 
     /**
@@ -92,9 +98,9 @@ class Reports
         $query = "SELECT MAX(todate) as endDate
             FROM $table
             WHERE reportType = 'information-services'
-            AND idSite = $idSite
+            AND idSite = ?
             AND status = 200";
 
-        return Db::fetchRow($query);
+        return Db::fetchRow($query, [$idSite]);
     }
 }

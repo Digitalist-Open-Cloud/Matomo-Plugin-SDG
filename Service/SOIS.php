@@ -24,6 +24,8 @@ declare(strict_types=1);
 namespace Piwik\Plugins\SDG\Service;
 
 use Exception;
+use Piwik\Container\StaticContainer;
+use Piwik\Log\LoggerInterface;
 use Piwik\Plugins\SDG\Lib\GetAPIConfig;
 use Piwik\Plugins\SDG\Lib\GetStatisticsOnInformationServices;
 use Piwik\Plugins\SDG\Lib\SendStats;
@@ -66,68 +68,42 @@ class SOIS
         // format the data.
         $referencePeriod = new Period($this->from, $this->to);
         $payload = json_encode(new StatisticsPayload($uuid, $referencePeriod, $result), JSON_UNESCAPED_SLASHES);
-        $url = $apiconfig['url'];
-        if ($this->send === true) {
-            try {
-                $endpoint = '/v2/statistics/information-services';
-                $prepare = new SendStats($apiconfig, $payload, $endpoint);
-                $sent = $prepare->ship();
-                if ($sent['response'] === true && $sent['status'] === 200) {
-                    $entries = json_decode($payload);
-                    $nbEntries = (int)$entries->nbEntries;
-                    $sql = new Sql();
-                    $sql->insertRequestInfo(
-                        $uuid,
-                        'information-services',
-                        $apiconfig['idsite'],
-                        $this->from,
-                        $this->to,
-                        $sent['status'],
-                        $nbEntries,
-                        $date_sent
-                    );
-                    return $response = [
-                      'status' => $sent['status'],
-                      'payload' => $payload,
-                    ];
-                } else {
-                    $sql = new Sql();
-                    $sql->insertRequestInfo(
-                        $uuid,
-                        'information-services',
-                        $apiconfig['idsite'],
-                        $this->from,
-                        $this->to,
-                        '404',
-                        0,
-                        $date_sent
-                    );
-                    return $response = [
-                        'status' => $sent['status'],
-                        'payload' => $payload,
-                      ];
-                }
-            } catch (Exception $e) {
-                $sql = new Sql();
-                $sql->insertRequestInfo(
-                    $uuid,
-                    'information-services',
-                    $apiconfig['idsite'],
-                    $this->from,
-                    $this->to,
-                    '404',
-                    0,
-                    $date_sent
-                );
-                echo 'Message: ' . $e->getMessage();
-                return 1;
-            }
-        } else {
-            print("Not providing send parameter, dumping.\n");
-            return $response = [
+        if ($this->send !== true) {
+            return [
                 'status' => 'dump',
                 'payload' => $payload,
-              ];
+            ];
         }
+
+        $status = 0;
+        $nbEntries = 0;
+        try {
+            $sent = (new SendStats($apiconfig, $payload, '/v2/statistics/information-services'))->ship();
+            $status = $sent['status'];
+            if ($status === 200) {
+                $nbEntries = (int) json_decode($payload)->nbEntries;
+            }
+        } catch (Exception $e) {
+            StaticContainer::get(LoggerInterface::class)->error('SDG: the statistics could not be sent: {message}', [
+                'message' => $e->getMessage(),
+            ]);
+        }
+
+        (new Sql())->insertRequestInfo(
+            $uuid,
+            'information-services',
+            $apiconfig['idsite'],
+            $this->from,
+            $this->to,
+            // The status page shows a transfer that got no answer as 404.
+            $status === 0 ? 404 : $status,
+            $nbEntries,
+            $date_sent
+        );
+
+        return [
+            'status' => $status,
+            'payload' => $payload,
+        ];
     }
 }

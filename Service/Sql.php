@@ -52,24 +52,19 @@ class Sql
     public function sent(int $limit = 10): array
     {
         $sql = "SELECT " . implode(", ", Sql::FIELDS) . " FROM " . Common::prefixTable(self::TABLE_NAME) .
-        " ORDER BY fromdate DESC LIMIT " . $limit;
+        " ORDER BY fromdate DESC LIMIT " . (int) $limit;
         return Db::fetchAll($sql);
     }
 
+    /**
+     * Records a transfer. A transfer that is sent again replaces what was recorded for it.
+     */
     public function insertRequestInfo($uniqueid, $type, $idSite, $fromdate, $todate, $status, $nbEntries, $date)
     {
-        $sql =  "INSERT INTO " . Common::prefixTable(self::TABLE_NAME) . "( " . implode(", ", Sql::FIELDS) . " )
-            VALUES (
-            '"  . $uniqueid . "' ,
-            '"  . $type . "' ,
-            '"  . $idSite . "' ,
-            '"  . $fromdate . "' ,
-            '"  . $todate . "' ,
-            '"  . $status . "' ,
-            '"  . $nbEntries . "' ,
-            '"  . $date . "' )";
+        $sql = "INSERT INTO " . Common::prefixTable(self::TABLE_NAME) . " (" . implode(", ", Sql::FIELDS) . ")
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            ON DUPLICATE KEY UPDATE status = VALUES(status), nbEntries = VALUES(nbEntries), lastChange = VALUES(lastChange)";
 
-
-        Db::query($sql);
+        Db::query($sql, [$uniqueid, $type, $idSite, $fromdate, $todate, $status, $nbEntries, $date]);
     }
 }
