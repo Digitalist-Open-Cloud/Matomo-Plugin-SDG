@@ -36,39 +36,9 @@ class SDG extends \Piwik\Plugin
     public function registerEvents()
     {
         return [
-            'CronArchive.getArchivingAPIMethodForPlugin' => 'getArchivingAPIMethodForPlugin',
-            'Translate.getClientSideTranslationKeys' => 'getClientSideTranslationKeys',
             'AssetManager.getJavaScriptFiles' => 'getJavaScriptFiles',
             'AssetManager.getStylesheetFiles' => 'getStylesheetFiles',
         ];
-    }
-
-    /**
-     * Get translations strings to js.
-     */
-    public function getClientSideTranslationKeys(&$translationKeys)
-    {
-        $translationKeys[] = 'SDG_SingleDigitalGateway';
-        $translationKeys[] = 'SDG_ApiKey';
-        $translationKeys[] = 'SDG_ApiKeyInlineHelp';
-        $translationKeys[] = 'SDG_ReportURLs';
-        $translationKeys[] = 'SDG_ReportURLsInlineHelp';
-        $translationKeys[] = 'SDG_LogsSent';
-        $translationKeys[] = 'SDG_ErrorSendingLogs';
-        $translationKeys[] = 'SDG_FilterBy';
-        $translationKeys[] = 'SDG_ReportText';
-        $translationKeys[] = 'SDG_SiteID';
-        $translationKeys[] = 'SDG_ReportType';
-        $translationKeys[] = 'SDG_From';
-        $translationKeys[] = 'SDG_To';
-        $translationKeys[] = 'SDG_Period';
-        $translationKeys[] = 'SDG_TimeSent';
-        $translationKeys[] = 'SDG_TransferDate';
-        $translationKeys[] = 'SDG_Response';
-        $translationKeys[] = 'SDG_Resend';
-        $translationKeys[] = 'SDG_SDGSingleDigitalGatewayStatistics';
-        $translationKeys[] = 'SDG_SDG';
-        $translationKeys[] = 'SDG_SDGHelp';
     }
 
     /**

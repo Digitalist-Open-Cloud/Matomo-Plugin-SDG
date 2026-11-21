@@ -21,6 +21,7 @@
 
 namespace Piwik\Plugins\SDG;
 
+use Piwik\Piwik;
 use Piwik\Settings\FieldConfig;
 use Piwik\Settings\Plugin\SystemSettings as PiwikSystemSettings;
 use Piwik\Validators\NotEmpty;
@@ -47,16 +48,12 @@ class SystemSettings extends PiwikSystemSettings
     {
         $default = ['live'];
         return $this->makeSetting('sdgEnvironmnet', $default, FieldConfig::TYPE_ARRAY, function (FieldConfig $field) {
-            $field->title = 'Set SDG environment';
+            $field->title = Piwik::translate('SDG_SettingEnvironment');
             $field->uiControl = FieldConfig::UI_CONTROL_SINGLE_SELECT;
-            $field->availableValues = ['acceptance' => 'Testing (acceptance)', 'live' => 'Production'];
-            $field->description = 'Settings for sending SDG statistics against production or acceptance environment.';
+            $field->availableValues = ['acceptance' => Piwik::translate('SDG_SettingEnvironmentAcceptance'), 'live' => Piwik::translate('SDG_SettingEnvironmentProduction')];
+            $field->description = Piwik::translate('SDG_SettingEnvironmentHelp');
         });
     }
-    /**
-     * Set which environmnet to use, Prod (live) or Testing (acceptance).
-     * Defaults to prod.
-     */
     private function sdgSendDate()
     {
         return $this->makeSetting(
@@ -64,14 +61,11 @@ class SystemSettings extends PiwikSystemSettings
             $default = '2',
             FieldConfig::TYPE_STRING,
             function (FieldConfig $field) {
-                $field->title = 'Date to send SDG from previous month';
+                $field->title = Piwik::translate('SDG_SettingSendDate');
                 $field->uiControl = FieldConfig::UI_CONTROL_SINGLE_SELECT;
                 $dates = array_combine(range(1, 31), range(1, 31));
                 $field->availableValues = $dates;
-                $field->description = 'Choose the date of month to send statistics to SDG '
-                . 'for previous month. this will be used for the scheduled task to automate '
-                . 'the sending of the statistics. Recommended to set to the second (2), to '
-                . 'be sure that you have all information needed archived.';
+                $field->description = Piwik::translate('SDG_SettingSendDateHelp');
                 $field->validators[] = new NotEmpty();
             }
         );

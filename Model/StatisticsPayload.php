@@ -56,8 +56,8 @@ class StatisticsPayload
         $uniqueId,
         Period $referencePeriod,
         array $sources,
-        int $nbEntries = null,
-        string $transferDate = null,
+        ?int $nbEntries = null,
+        ?string $transferDate = null,
         string $transferType = 'API'
     ) {
         $this->uniqueId = $uniqueId;

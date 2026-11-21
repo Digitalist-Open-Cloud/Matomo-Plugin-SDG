@@ -2,6 +2,12 @@
   "SDG": {
     "SDG": "SDG",
     "SingleDigitalGateway": "Single Digital Gateway",
+    "SettingEnvironment": "Set SDG environment",
+    "SettingEnvironmentAcceptance": "Testing (acceptance)",
+    "SettingEnvironmentProduction": "Production",
+    "SettingEnvironmentHelp": "Whether SDG statistics are sent to the production or the acceptance environment.",
+    "SettingSendDate": "Day of the month to send the previous month to SDG",
+    "SettingSendDateHelp": "From this day of the month on, the scheduled task sends the statistics of the previous month to SDG, until SDG has accepted them. The second (2) is recommended, so that everything of the previous month is archived.",
     "ApiKey": "SDG API key",
     "ApiKeyInlineHelp": "Enter the API key, this will be saved as a secret, and it will show up here as ***",
     "ReportURLs": "SDG Report URLs",

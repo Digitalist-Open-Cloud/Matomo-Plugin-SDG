@@ -2,8 +2,6 @@
 
 namespace Piwik\Plugins\SDG\tests\Integration;
 
-use Piwik\Container\StaticContainer;
-use Piwik\Log\LoggerInterface;
 use Piwik\NoAccessException;
 use Piwik\Nonce;
 use Piwik\Plugins\SDG\API;
@@ -34,7 +32,7 @@ class AccessTest extends SdgTestCase
         (new Sql())->insertRequestInfo('uuid-of-site-2', 'information-services', 2, '2024-03-01', '2024-03-31', 403, 0, '2024-04-02');
 
         $this->answer(200);
-        $this->controller = new Controller(new Reports(), StaticContainer::get(LoggerInterface::class));
+        $this->controller = new Controller(new Reports());
         $_GET = [];
     }
 

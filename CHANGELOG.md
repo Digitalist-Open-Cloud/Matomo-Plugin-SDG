@@ -16,6 +16,7 @@
 
 ### Fixed
 
+- The stylesheet of the plugin no longer changes the text alignment of every table in Matomo.
 - The status page can be filtered by website.
 - A month is sent from the send date on until the portal has accepted it, once a day. Before, it was only tried on the send date itself, so a month was lost when that day was missed or the send date was a day the month does not have.
 - `sdg:send-statistics-on-information-services` refuses a period that does not start on the first day of a month, as the portal does.
@@ -24,6 +25,9 @@
 
 ### Changed
 
+- The plugin needs PHP 8.2 or newer and runs without deprecation notices on PHP 8.4.
+- The texts of the system settings can be translated.
+- Templates and JavaScript no longer rely on AngularJS attributes and inline event handlers.
 - Only the report URLs of a website are used for that website. Before, the URLs of all websites were.
 - A website without report URLs archives nothing for the plugin.
 - A transfer that is sent again replaces what was recorded for it, and the status the portal answered with is recorded.

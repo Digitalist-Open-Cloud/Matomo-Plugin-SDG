@@ -34,7 +34,6 @@ class GetSingleDigitalGateway extends Base
         parent::init();
 
         $this->name = Piwik::translate('SDG_SDGSingleDigitalGatewayStatistics');
-        $this->dimension = null;
         $this->documentation = Piwik::translate('SDG_SDGHelp');
         $this->order = 99;
         $this->processedMetrics = array();

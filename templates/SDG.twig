@@ -2,7 +2,7 @@
 
 {% set title %}{{ 'SDG_SDG'|translate }}{% endset %}
 {% block content %}
-    <div class="card ng-isolate-scope" piwik-content-block="" content-title="Single Digital Gateway">
+    <div class="card">
       <div class="card-content">
         <div style="float:right">
             <a style="text-decoration:none" href="https://www.digitalist.se/">
@@ -18,7 +18,7 @@
             {% if siteIds is defined %}
                 <div class="filterby">
                     <label for="filterBySiteId">{{ 'SDG_SiteId'|translate }}</label>
-                    <select name="filterBySiteId" id="filterBySiteId" onchange="filterSdgBy()">
+                    <select name="filterBySiteId" id="filterBySiteId">
                         <option value="" selected></option>
                         {% for key, siteId in siteIds %}
                             <option value="{{ key }}">{{ siteId }}</option>
@@ -29,7 +29,7 @@
             {% if names is defined %}
                 <div class="filterby">
                     <label for="filterByName">{{ 'SDG_ReportType'|translate }}</label>
-                    <select name="filterByName" id="filterByName" onchange="filterSdgBy()">
+                    <select name="filterByName" id="filterByName">
                         <option value="" selected></option>
                         {% for key, name in names %}
                             <option value="{{ key }}">{{ name }}</option>
@@ -40,7 +40,7 @@
             {% if fromDates is defined %}
                 <div class="filterby">
                     <label for="filterByFrom">{{ 'SDG_From'|translate }}</label>
-                    <select name="filterByFrom" id="filterByFrom" onchange="filterSdgBy()">
+                    <select name="filterByFrom" id="filterByFrom">
                         <option value="" selected></option>
                         {% for key, date in fromDates %}
                             <option value="{{ key }}">{{ date }}</option>
@@ -51,7 +51,7 @@
             {% if toDates is defined %}
                 <div class="filterby">
                     <label for="filterByTo">{{ 'SDG_To'|translate }}:</label>
-                    <select name="filterByTo" id="filterByTo" onchange="filterSdgBy()">
+                    <select name="filterByTo" id="filterByTo">
                         <option value="" selected></option>
                         {% for key, date in toDates %}
                             <option value="{{ key }}">{{ date }}</option>
@@ -62,7 +62,7 @@
             {% if statuses is defined %}
                 <div class="filterby">
                     <label for="filterByTo">{{ 'SDG_Response'|translate }}:</label>
-                    <select name="filterByStatus" id="filterByStatus" onchange="filterSdgBy()">
+                    <select name="filterByStatus" id="filterByStatus">
                         <option value="" selected></option>
                         {% for key, name in statuses %}
                             <option value="{{ key }}">{{ name }}</option>
@@ -71,7 +71,7 @@
                 </div>
             {% endif %}
         </div>
-        <table piwik-content-table id="sdg">
+        <table class="entityTable" vue-directive="CoreHome.ContentTable" id="sdg">
             {% include('@SDG/_sdgTable.twig') %}
         </table>
     </div>
