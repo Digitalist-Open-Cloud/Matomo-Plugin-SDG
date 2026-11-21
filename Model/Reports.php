@@ -28,20 +28,11 @@ use Piwik\Plugins\SDG\Service\Sql;
 class Reports
 {
     /**
-     * @param string|null $uniqueId
-     *
-     * @return array|bool
-     * @throws \Exception
+     * @return array<array<string, mixed>> all transfers that were recorded
      */
-    public function getSentReports(?string $uniqueId = null)
+    public function getSentReports(): array
     {
-        $sql = "SELECT * FROM " . Common::prefixTable(Sql::TABLE_NAME);
-
-        if (!empty($uniqueId)) {
-            return Db::fetchAll($sql . " WHERE uniqueid = ?", [$uniqueId]);
-        }
-
-        return Db::fetchAll($sql);
+        return Db::fetchAll("SELECT * FROM " . Common::prefixTable(Sql::TABLE_NAME));
     }
 
     /**
@@ -52,39 +43,6 @@ class Reports
         $report = Db::fetchRow("SELECT * FROM " . Common::prefixTable(Sql::TABLE_NAME) . " WHERE uniqueid = ?", [$uniqueId]);
 
         return empty($report) ? null : $report;
-    }
-
-    /**
-     * @param string $uniqueId
-     *
-     * @return array|bool
-     * @throws \Exception
-     */
-    public function getSentReportLogs(string $uniqueId)
-    {
-        return Db::fetchAll(
-            "SELECT * FROM " . Common::prefixTable(Sql::TABLE_NAME) . " WHERE uniqueid = ? ORDER BY id DESC",
-            [$uniqueId]
-        );
-    }
-
-    /**
-     * @param int $idSite
-     *
-     * @return array|bool
-     */
-    public function getFailedReports(int $idSite)
-    {
-        $table = Common::prefixTable(Sql::TABLE_NAME);
-
-        $query = "SELECT uniqueid, fromDate, toDate
-            FROM $table
-            WHERE reportType = 'information-services'
-            AND status <> 200
-            AND idSite = ?
-            AND toDate = (SELECT MIN(toDate) FROM $table WHERE status <> 200)";
-
-        return Db::fetchRow($query, [$idSite]);
     }
 
     /**

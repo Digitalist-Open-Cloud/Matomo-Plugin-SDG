@@ -41,9 +41,6 @@ class GetAPIConfig
         if ($env[0] == 'acceptance') {
             $apiUrl = 'https://collect.sdgacceptance.eu';
         }
-        $day = (int)1;
-        $day = $settings->senddate->getValue();
-
         $settings = new MeasurableSettings((int) $this->config['idsite']);
         $apiKey = $settings->apiKey->getValue();
         if ($env[0] == 'acceptance') {
@@ -53,7 +50,6 @@ class GetAPIConfig
             'idsite' => (int)$this->config['idsite'],
             'key' => (string)$apiKey,
             'url' => (string)$apiUrl,
-            'day' => (int)$day,
         ];
     }
 }

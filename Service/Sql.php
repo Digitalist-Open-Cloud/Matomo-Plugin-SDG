@@ -49,13 +49,6 @@ class Sql
         self::LASTCHANGE,
     ];
 
-    public function sent(int $limit = 10): array
-    {
-        $sql = "SELECT " . implode(", ", Sql::FIELDS) . " FROM " . Common::prefixTable(self::TABLE_NAME) .
-        " ORDER BY fromdate DESC LIMIT " . (int) $limit;
-        return Db::fetchAll($sql);
-    }
-
     /**
      * Records a transfer. A transfer that is sent again replaces what was recorded for it.
      */

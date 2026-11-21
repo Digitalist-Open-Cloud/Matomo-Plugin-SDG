@@ -84,9 +84,8 @@ To run:
      * @param string $idsite
      * @param string $urls
      * @param bool $no_append
-     * @return true
      */
-    private function setUrls($idsite, $urls, $no_append)
+    private function setUrls($idsite, $urls, $no_append): void
     {
         $settings = new MeasurableSettings((int) $idsite);
         $existing = $settings->reportUrls->getValue();
@@ -97,7 +96,6 @@ To run:
         $cleanUrls = $this->removeDuplicates($urls);
         $settings->reportUrls->setValue($cleanUrls);
         $settings->save();
-        return self::SUCCESS;
     }
 
     private function getUrls($idsite, $urls)

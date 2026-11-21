@@ -45,21 +45,9 @@ class Controller extends \Piwik\Plugin\Controller
      */
     protected $db;
 
-    /**
-     * @var \Psr\Log\LoggerInterface
-     */
-    protected $logger;
-
-    /**
-     * Controller constructor.
-     *
-     * @param Reports $db
-     * @param \Psr\Log\LoggerInterface $logger
-     */
-    public function __construct(Reports $db, \Psr\Log\LoggerInterface $logger)
+    public function __construct(Reports $db)
     {
         $this->db = $db;
-        $this->logger = $logger;
     }
 
     /**

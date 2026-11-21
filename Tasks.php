@@ -23,6 +23,7 @@ namespace Piwik\Plugins\SDG;
 
 use Exception;
 use Piwik\Date;
+use Piwik\Log\LoggerInterface;
 use Piwik\Plugins\SDG\Lib\GetAllUrls;
 use Piwik\Plugins\SDG\Model\Reports;
 use Piwik\Plugins\SDG\Service\SOIS;
@@ -31,11 +32,11 @@ use Piwik\Scheduler\RetryableException;
 class Tasks extends \Piwik\Plugin\Tasks
 {
     /**
-     * @var \Psr\Log\LoggerInterface
+     * @var LoggerInterface
      */
     protected $logger;
 
-    public function __construct(\Psr\Log\LoggerInterface $logger)
+    public function __construct(LoggerInterface $logger)
     {
         $this->logger = $logger;
     }
