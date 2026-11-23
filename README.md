@@ -1,5 +1,9 @@
 # Matomo Single Digital Gateway (SDG) Plugin
 
+[![PHPCS check](https://github.com/Digitalist-Open-Cloud/Matomo-Plugin-SDG/actions/workflows/phpcs.yaml/badge.svg)](https://github.com/Digitalist-Open-Cloud/Matomo-Plugin-SDG/actions/workflows/phpcs.yaml)
+[![Semgrep OSS scan](https://github.com/Digitalist-Open-Cloud/Matomo-Plugin-SDG/actions/workflows/semgrep.yaml/badge.svg)](https://github.com/Digitalist-Open-Cloud/Matomo-Plugin-SDG/actions/workflows/semgrep.yaml)
+[![Test plugin with Matomo](https://github.com/Digitalist-Open-Cloud/Matomo-Plugin-SDG/actions/workflows/matomo.yaml/badge.svg)](https://github.com/Digitalist-Open-Cloud/Matomo-Plugin-SDG/actions/workflows/matomo.yaml)
+
 Plugin for Single Digital Gateway for Your Europe.
 
 ## Use for plugin
