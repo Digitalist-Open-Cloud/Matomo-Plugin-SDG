@@ -1,7 +1,7 @@
 {
   "name": "SDG",
   "description": "Single Digital Gateway (SDG) for Your Europe portal",
-  "version": "5.2.0",
+  "version": "5.2.1",
   "theme": false,
   "require": {
     "php": ">=8.2.0",
